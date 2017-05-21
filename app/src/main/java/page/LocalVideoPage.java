@@ -1,6 +1,7 @@
 package page;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,6 +39,15 @@ public class LocalVideoPage extends Fragment {
         View view = View.inflate(context, R.layout.local_video_list, null);
         localvideo_list = (ListView) view.findViewById(R.id.localvideo_list);
         tv_unfoundvideo = (TextView) view.findViewById(R.id.tv_unfoundvideo);
+        localvideo_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LocalVideoInfo videoInfo = videoInfos.get(position);
+                Intent intent = new Intent();
+                intent.setDataAndType(Uri.parse(videoInfo.getData()),"video/*");
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
