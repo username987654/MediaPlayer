@@ -11,6 +11,11 @@
         android:id="@+id/fl_interface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RadioGroup>
 
 
 </LinearLayout>
