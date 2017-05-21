@@ -21,6 +21,9 @@ import android.widget.VideoView;
 
 import com.atguigu.mediaplayer.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import utils.Utils;
 
 public class SystemVideoPlayerActivity extends AppCompatActivity implements View.OnClickListener {
@@ -209,9 +212,17 @@ public class SystemVideoPlayerActivity extends AppCompatActivity implements View
             super.handleMessage(msg);
             int currentPosition = video_player.getCurrentPosition();
             seekbarVideo.setProgress(currentPosition);
+            tvSystemTime.setText(getSystemTime());
             sendEmptyMessageDelayed(PROGRESS,1000);
         }
     };
+
+    private String getSystemTime() {
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        return format.format(new Date());
+
+    }
 
 
 }
