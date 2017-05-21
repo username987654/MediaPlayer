@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
         rg_menu.setOnCheckedChangeListener(this);
         addFragment();
+        rg_menu.check(R.id.rb_local_video);
 
     }
 

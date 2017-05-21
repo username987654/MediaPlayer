@@ -19,6 +19,7 @@ import com.atguigu.mediaplayer.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import activity.SystemVideoPlayerActivity;
 import adapter.BaseAdapter;
 import bean.LocalVideoInfo;
 import fragment.Fragment;
@@ -43,7 +44,7 @@ public class LocalVideoPage extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LocalVideoInfo videoInfo = videoInfos.get(position);
-                Intent intent = new Intent();
+                Intent intent = new Intent(context, SystemVideoPlayerActivity.class);
                 intent.setDataAndType(Uri.parse(videoInfo.getData()),"video/*");
                 startActivity(intent);
             }
