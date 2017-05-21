@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.atguigu.mediaplayer.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ import fragment.Fragment;
  */
 
 public class LocalVideoPage extends Fragment {
-    private List<LocalVideoInfo> videoInfos;
+    private ArrayList<LocalVideoInfo> videoInfos;
     private BaseAdapter baseAdapter;
     private TextView tv_unfoundvideo;
     private ListView localvideo_list;
@@ -43,10 +45,15 @@ public class LocalVideoPage extends Fragment {
         localvideo_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                LocalVideoInfo videoInfo = videoInfos.get(position);
+               // LocalVideoInfo videoInfo = videoInfos.get(position);
+               // intent.setDataAndType(Uri.parse(videoInfo.getData()),"video/*");
                 Intent intent = new Intent(context, SystemVideoPlayerActivity.class);
-                intent.setDataAndType(Uri.parse(videoInfo.getData()),"video/*");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("videolist",videoInfos);
+                intent.putExtra("position",position);
+                intent.putExtras(bundle);
                 startActivity(intent);
+
             }
         });
         return view;

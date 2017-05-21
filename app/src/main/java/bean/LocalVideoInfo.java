@@ -1,12 +1,13 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.Timer;
 
 /**
  * Created by HaoMeng on 2017/5/21.
  */
 
-public class LocalVideoInfo {
+public class LocalVideoInfo implements Serializable{
     private String name;
     private long duration;
     private long size;
