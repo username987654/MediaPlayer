@@ -1,5 +1,9 @@
 package activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
@@ -40,6 +44,7 @@ public class SystemVideoPlayerActivity extends AppCompatActivity implements View
     private Button btnNext;
     private Button btnSwitchScreen;
     private Utils utils;
+    private BroadCastReceiver receiver;;
 
     /**
      * Find the Views in the layout<br />
@@ -118,11 +123,41 @@ public class SystemVideoPlayerActivity extends AppCompatActivity implements View
         setContentView(R.layout.activity_system_video_player);
         video_player = (VideoView) findViewById(R.id.vv);
         Uri uri = getIntent().getData();
+        initData();
         findViews();
         setListener();
         video_player.setVideoURI(uri);
         video_player.setMediaController(new MediaController(this));
 
+    }
+
+    private void initData() {
+        receiver = new BroadCastReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(receiver,filter);
+    }
+
+    class BroadCastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int level = intent.getIntExtra("level", 0);
+            if(level <= 0){
+                ivBattery.setImageResource(R.drawable.ic_battery_0);
+            }else if(level <= 10 ){
+                ivBattery.setImageResource(R.drawable.ic_battery_10);
+            }else if(level <= 20 ){
+                ivBattery.setImageResource(R.drawable.ic_battery_20);
+            }else if(level <= 40 ){
+                ivBattery.setImageResource(R.drawable.ic_battery_40);
+            }else if(level <= 60 ){
+                ivBattery.setImageResource(R.drawable.ic_battery_60);
+            }else if(level <= 80 ){
+                ivBattery.setImageResource(R.drawable.ic_battery_80);
+            }else if(level <= 100 ){
+                ivBattery.setImageResource(R.drawable.ic_battery_100);
+            }
+        }
     }
 
     private void setListener() {
