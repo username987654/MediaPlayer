@@ -11,7 +11,7 @@ import fragment.Fragment;
  * Created by HaoMeng on 2017/5/21.
  */
 
-public class LoadAudioPage extends Fragment {
+public class LocalAudioPage extends Fragment {
     private TextView tv;
     @Override
     public View initView() {

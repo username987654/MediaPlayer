@@ -1,18 +1,16 @@
 package com.atguigu.mediaplayer;
 
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import fragment.Fragment;
-import page.LoadAudioPage;
-import page.LoadVideoPage;
+import page.LocalAudioPage;
+import page.LocalVideoPage;
 import page.NetAudioPage;
 import page.NetVideoPage;
 
@@ -33,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     private void addFragment() {
         fragments = new ArrayList<>();
-        fragments.add(new LoadVideoPage());
-        fragments.add(new LoadAudioPage());
+        fragments.add(new LocalVideoPage());
+        fragments.add(new LocalAudioPage());
         fragments.add(new NetVideoPage());
         fragments.add(new NetAudioPage());
     }
